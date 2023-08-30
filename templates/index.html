@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medicine Recommender System</title>
+    <link rel="stylesheet" type="text/css" href="static\css\style.css">
+
+</head>
+<body>
+    <h1>Medicine Recommender System</h1>
+    <form method="post" action="/recommend">
+        <label for="selected_medicine_name">Type your medicine name:</label>
+        <select name="selected_medicine_name" id="selected_medicine_name">
+            {% for medicine in medicines %}
+            <option value="{{ medicine }}">{{ medicine }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Recommend Medicine</button>
+    </form>
+    {% if recommendations %}
+    <h2>Recommended Medicines:</h2>
+    
+    {% endif %}
+    {% for i in recommendations %}
+    <p>{{ loop.index }}. {{ i }}</p> <!-- Recommended-drug-name -->
+    <!-- <p>Click here -> <a href="https://www.netmeds.com/catalogsearch/result?q={{ i }}">Purchase from Netmeds</a></p> -->
+    <p>Click here -> <a href="https://pharmeasy.in/search/all?name={{ i }}">Purchase from Pharmeasy</a></p>
+{% endfor %}
+
+</body>
+</html>
